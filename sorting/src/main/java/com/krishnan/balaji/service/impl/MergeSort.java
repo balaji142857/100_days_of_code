@@ -9,8 +9,7 @@ public class MergeSort<T extends Comparable<T>> implements SortService<T>{
 
 	@Override
 	public List<T> sort(List<T> input) {
-		
-		return null;
+		return input;
 	}
 	
 	private void split(List<T> input, List<List<T>> output) {

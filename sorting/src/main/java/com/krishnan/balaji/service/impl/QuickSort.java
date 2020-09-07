@@ -8,32 +8,37 @@ public class QuickSort<T extends Comparable<T>> implements SortService<T> {
 
 	@Override
 	public List<T> sort(List<T> input) {
-		// select a pivot
-		// move left pointer
-		// move left & right pointer towards pivot
-		// left till > pivot
-		// right till >= pivot
-		// swap values
 		quickSort(input, 0, input.size() - 1);
 		return input;
 	}
 
 	private void quickSort(List<T> input, int start, int end) {
-//		System.out.println("processing " + input + " for start: " + start + ", end: " + end + " pivot: "
-//				+ input.get((end - start) / 2));
 		if (start == end) {
 			return;
 		}
 		int left = start;
 		int right = end;
-		int index = 0;
-		if (end - start == 1 && input.get(start).compareTo(input.get(end)) > 0) {
-			swap(input, start, end);
+		int index = 1;
+		if (end - start == 1 ) {
+			if (input.get(start).compareTo(input.get(end)) > 0) {
+				swap(input, start, end);
+			}
 			return;
 		}
-		int pivotIndex = (end - start) / 2;
+		if (end-start == 2) {
+			if (input.get(start).compareTo(input.get(start+1)) > 0) {
+				swap(input, start, start +1);
+			}
+			if (input.get(start+1).compareTo(input.get(start+2)) > 0) {
+				swap(input, start+1, start +2);
+			}
+			return;
+		}
+//		System.out.println("processing " + input + " for start: " + start + ", end: " + end + " pivot: "
+//				+ input.get((end - start) / 2));
+		int pivotIndex = 1 + (end - start) / 2;
 		while (left < pivotIndex) {
-//		System.out.println("sorting in index " + index);
+//		System.out.println("sorting iteration " + index);
 			if (pivotIndex == start || pivotIndex == end) {
 				return;
 			}

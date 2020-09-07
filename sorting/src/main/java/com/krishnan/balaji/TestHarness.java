@@ -10,12 +10,13 @@ public class TestHarness {
 
 	public static void main(String[] args) {
 		List<SortService> sortingAlgos = AlgorithmLoader.getInstance().getSortingAlgorithms();
+//		18, 80, 86, 73, 46, 8, 26, 66
 		List<Integer> input = prepareInput(8);
-		System.out.println("input: " + input);
+		System.out.println("input: \t\t\t\t" + input);
 		sortingAlgos.forEach(sortingAlgo -> {
 			List cloned = new ArrayList<>();
 			cloned.addAll(input);
-			System.out.println("algorithm " + sortingAlgo.getClass().getCanonicalName() +", output: " + sortingAlgo.sort(cloned));
+			System.out.println(sortingAlgo.getClass().getSimpleName() +" output: \t\t" + sortingAlgo.sort(cloned));
 		});
 		
 	}
