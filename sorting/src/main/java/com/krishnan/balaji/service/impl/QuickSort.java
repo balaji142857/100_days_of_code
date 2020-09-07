@@ -1,8 +1,10 @@
-package com.krishnan.balaji;
+package com.krishnan.balaji.service.impl;
 
 import java.util.List;
 
-public class QuickSort<T extends Comparable<T>> implements Sort<T> {
+import com.krishnan.balaji.service.SortService;
+
+public class QuickSort<T extends Comparable<T>> implements SortService<T> {
 
 	@Override
 	public List<T> sort(List<T> input) {
@@ -17,8 +19,8 @@ public class QuickSort<T extends Comparable<T>> implements Sort<T> {
 	}
 
 	private void quickSort(List<T> input, int start, int end) {
-		System.out.println("processing " + input + " for start: " + start + ", end: " + end + " pivot: "
-				+ input.get((end - start) / 2));
+//		System.out.println("processing " + input + " for start: " + start + ", end: " + end + " pivot: "
+//				+ input.get((end - start) / 2));
 		if (start == end) {
 			return;
 		}
@@ -38,8 +40,8 @@ public class QuickSort<T extends Comparable<T>> implements Sort<T> {
 			left = getLeftSwapIndex(input, start, pivotIndex);
 			right = getRightSwapIndex(input, pivotIndex, end);
 			if (input.get(left).compareTo(input.get(right)) > 0) {
-				System.out.println("Swapping " + input.get(left) + " and " + input.get(right) + " with pivot "
-						+ input.get(pivotIndex) + " in iteration: " + index);
+//				System.out.println("Swapping " + input.get(left) + " and " + input.get(right) + " with pivot "
+//						+ input.get(pivotIndex) + " in iteration: " + index);
 				swap(input, left, right);
 			}
 //			if (left == start && right == end) {
@@ -76,7 +78,7 @@ public class QuickSort<T extends Comparable<T>> implements Sort<T> {
 		int left = 0;
 		for (; left < pivotIndex; left++) {
 			if (input.get(left).compareTo(input.get(pivotIndex)) > 0) {
-				System.out.println(input.get(left) + " is greater than " + input.get(pivotIndex));
+//				System.out.println(input.get(left) + " is greater than " + input.get(pivotIndex));
 				break;
 			}
 		}

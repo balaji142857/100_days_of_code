@@ -1,9 +1,11 @@
-package com.krishnan.balaji;
+package com.krishnan.balaji.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectionSort<T extends Comparable<T>> implements Sort<T> {
+import com.krishnan.balaji.service.SortService;
+
+public class SelectionSort<T extends Comparable<T>> implements SortService<T> {
 
 	@Override
 	public List<T> sort(List<T> input) {
