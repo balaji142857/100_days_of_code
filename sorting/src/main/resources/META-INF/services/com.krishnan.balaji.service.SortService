@@ -1,5 +1,5 @@
 com.krishnan.balaji.service.impl.BubbleSort
 com.krishnan.balaji.service.impl.InsertionSort
 com.krishnan.balaji.service.impl.SelectionSort
-com.krishnan.balaji.service.impl.QuickSort
-com.krishnan.balaji.service.impl.MergeSort
+#com.krishnan.balaji.service.impl.QuickSort
+#com.krishnan.balaji.service.impl.MergeSort
