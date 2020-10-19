@@ -10,7 +10,8 @@ public class AvlTree implements Tree {
 			root = new Node(value);
 			return root;
 		}
-		return insert(root, value);
+		root =  insert(root, value);
+		return root;
 	}
 	
 	private Node insert(Node node, int value) {
@@ -23,7 +24,7 @@ public class AvlTree implements Tree {
 		} else if (value > node.value) {
 			node.right = insert(node.right, value);
 		} 
-		node.height = Math.max(getHeight(node.left), getHeight(node.right)) + 1;
+		updateHeight(node);
 		int balance = getBalance(node);
 		if (balance > 1) {
 			if (value < node.left.value) {
@@ -47,6 +48,8 @@ public class AvlTree implements Tree {
 		Node newRoot = pivot.right;
 		pivot.right = newRoot.left;
 		newRoot.left = pivot;
+		updateHeight(newRoot);
+		updateHeight(pivot);
 		return newRoot;
 	}
 
@@ -54,16 +57,22 @@ public class AvlTree implements Tree {
 		Node newRoot = pivot.left;
 		pivot.left= newRoot.right;
 		newRoot.right = pivot;
+		updateHeight(newRoot);
+		updateHeight(pivot);
 		return newRoot;
+	}
+	
+	private void updateHeight(Node node) {
+		node.height = Math.max(getHeight(node.left), getHeight(node.right)) + 1;
 	}
 
 	private int getHeight(Node node) {
 		if (null == node) {
 			return 0;
 		} 
-		int leftHeight = null != node.left ? node.left.height : 0;
-		int rightHeight = null != node.right ? node.right.height : 0;
-		return Math.max(leftHeight, rightHeight);
+		int leftHeight = getHeight(node.left);
+		int rightHeight = getHeight(node.right);
+		return 1 + Math.max(leftHeight, rightHeight);
 	}
 	
 	private int getBalance(Node node) {
@@ -72,7 +81,8 @@ public class AvlTree implements Tree {
 
 	@Override
 	public Node delete(int value) {
-		return delete(root, value);
+		root = delete(root, value);
+		return root;
 	}
 	
 	private Node delete(Node node, int value) {
@@ -80,27 +90,21 @@ public class AvlTree implements Tree {
 			return node;
 		}
 		if (value < node.value) {
-			node = delete(node.left, value);
+			node.left = delete(node.left, value);
 		} else if (value > node.value) {
-			node = delete(node.right, value);
-		}
-		
-		if (null == node.left || null == node.right) {
-			node = null == node.left ? node.right : node.left;
-//			Node temp = null == node.left ? node.right : node.left;
-//			if (null == temp) {
-//				node = null;
-//			} else {
-//				
-//			}
+			node.right = delete(node.right, value);
 		} else {
-			Node temp = findMinNode(node.right);
-			node.right = delete(root, temp.value);
+			if (null == node.left || null == node.right) {
+				node = null == node.left ? node.right : node.left;
+			} else {
+				Node temp = findMinNode(node.right);
+				node.right = delete(root, temp.value);
+			}
 		}
 		if (null == node) {
 			return node;
 		}
-		node.height = Math.max(getHeight(node.left), getHeight(node.right)) + 1;
+		updateHeight(node);
 		int balance = getBalance(node);
 		if (balance > 1) {
 			if (value < node.left.value) {
@@ -121,17 +125,14 @@ public class AvlTree implements Tree {
 	}
 
 	private Node findMinNode(Node node) {
-		if (node.left != null) {
-			return findMinNode(node.left);
-		}
-		return node;
+		return node.left!= null ? findMinNode(node.left) : node;
 	}
 
 	@Override
 	public void inOrder() {
 		System.out.println("+++++++ inOrder ++++++++");
 		inOrder(root);
-		System.out.println("+++++++ inOrder End ++++++++");
+		System.out.println();
 	}
 
 	private void inOrder(Node node) {
@@ -145,9 +146,9 @@ public class AvlTree implements Tree {
 
 	@Override
 	public void preOrder() {
-		System.out.println("+++++++ preOrder End ++++++++");
+		System.out.println("+++++++ preOrder ++++++++");
 		preOrder(root);
-		System.out.println("+++++++ preOrder End ++++++++");
+		System.out.println();
 	}
 	
 	private void preOrder(Node node) {
@@ -161,9 +162,9 @@ public class AvlTree implements Tree {
 
 	@Override
 	public void postOrder() {
-		System.out.println("+++++++ postOrder End ++++++++");
+		System.out.println("+++++++ postOrder ++++++++");
 		postOrder(root);
-		System.out.println("+++++++ postOrder End ++++++++");
+		System.out.println();
 	}
 	
 	private void postOrder(Node node) {
