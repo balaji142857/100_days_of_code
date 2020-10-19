@@ -1,0 +1,5 @@
+com.kb.sort.impl.BubbleSort
+com.kb.sort.impl.InsertionSort
+com.kb.sort.impl.SelectionSort
+com.kb.sort.impl.QuickSort1
+#com.kb.sort.impl.MergeSort
