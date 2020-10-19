@@ -1,9 +1,9 @@
-package com.krishnan.balaji.service.impl;
+package com.kb.sort.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.krishnan.balaji.service.SortService;
+import com.kb.sort.SortService;
 
 public class InsertionSort<T extends Comparable<T>> implements SortService<T> {
 
@@ -12,7 +12,13 @@ public class InsertionSort<T extends Comparable<T>> implements SortService<T> {
 		List<T> output = new ArrayList<>(input.size());
 		while (input.size() > 0) {
 			T item = input.remove(0);
-			output.add(findIndexFor(output, item), item);
+			int index = findIndexFor(output, item);
+			if (index < 0) {
+				output.add(item);
+			} else {
+				output.add(index, item);
+			}
+			
 		}
 		return output;
 	}
@@ -23,6 +29,6 @@ public class InsertionSort<T extends Comparable<T>> implements SortService<T> {
 				return i;
 			}
 		}
-		return 0;
+		return -1;
 	}
 }

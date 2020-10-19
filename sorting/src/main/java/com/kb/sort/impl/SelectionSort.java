@@ -1,9 +1,9 @@
-package com.krishnan.balaji.service.impl;
+package com.kb.sort.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.krishnan.balaji.service.SortService;
+import com.kb.sort.SortService;
 
 public class SelectionSort<T extends Comparable<T>> implements SortService<T> {
 
