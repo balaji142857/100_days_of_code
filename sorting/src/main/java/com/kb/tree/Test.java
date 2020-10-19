@@ -8,10 +8,10 @@ public class Test {
 		tree.insert(15);
 		tree.insert(20);
 		tree.insert(25);
-		print(tree);
+		tree.printTree(tree.root(),"", true);
 		tree.delete(5);
-		System.out.println("deletion complete");
-		print(tree);
+		System.out.println("deletion completed");
+		tree.printTree(tree.root(),"", true);
 	}
 
 	private static void print(Tree tree) {

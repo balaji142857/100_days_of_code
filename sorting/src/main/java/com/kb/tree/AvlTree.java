@@ -176,4 +176,9 @@ public class AvlTree implements Tree {
 		System.out.println(node.value);
 	}
 
+	@Override
+	public Node root() {
+		return root;
+	}
+
 }
